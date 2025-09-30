@@ -3,147 +3,363 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hope for Humanity</title>
+  <title>Frontline | Relief & Aid for War Zones</title>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Reset & Base */
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: Arial, sans-serif; line-height:1.6; color:#333; }
+    :root {
+      --primary: #0b5394;
+      --accent: #ffb703;
+      --bg: #f5f8fb;
+      --text-dark: #1f2937;
+      --text-light: #4b5563;
+      --card-bg: white;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body {
+      font-family: 'Work Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
 
-    /* Header */
-    header { background:#003366; color:white; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:1000; }
-    header h1 { font-size:1.5rem; }
-    nav ul { list-style:none; display:flex; gap:1.5rem; }
-    nav a { color:white; text-decoration:none; font-weight:bold; }
-    nav a:hover { text-decoration:underline; }
+    header {
+      background: var(--card-bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .nav-container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.2rem;
+    }
+    nav a {
+      font-weight: 500;
+      padding: 0.5rem 0.8rem;
+      border-radius: var(--radius);
+    }
+    nav a:hover {
+      background: rgba(11,83,148, 0.1);
+      color: var(--primary);
+    }
 
-    /* Hero */
-    .hero { background:url('https://source.unsplash.com/1600x600/?peace,hope') no-repeat center/cover; color:white; text-align:center; padding:6rem 2rem; }
-    .hero h2 { font-size:3rem; margin-bottom:1rem; }
-    .btn { background:#ffcc00; padding:.75rem 1.5rem; border-radius:8px; text-decoration:none; font-weight:bold; color:black; margin:.5rem; display:inline-block; }
-    .btn:hover { background:#e6b800; }
+    .hero {
+      position: relative;
+      height: 60vh;
+      background: url('https://source.unsplash.com/1600x900/?aid,peace') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      color: white;
+      max-width: 700px;
+    }
+    .hero-content h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: #e0e7ff;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.6rem;
+      color: white;
+      background: var(--accent);
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid white;
+    }
 
-    /* Sections */
-    section { padding:3rem 2rem; max-width:1100px; margin:auto; }
-    h2 { text-align:center; margin-bottom:1.5rem; color:#003366; }
-    p { margin-bottom:1rem; }
+    section {
+      padding: 4rem 1.5rem;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
 
-    /* Goal Bar */
-    .goal-bar { background:#eee; border-radius:20px; overflow:hidden; margin:2rem auto; width:80%; height:30px; }
-    .progress { background:#4caf50; height:100%; text-align:center; color:white; font-weight:bold; line-height:30px; }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--primary);
+    }
 
-    /* Grid Cards */
-    .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:2rem; margin-top:2rem; }
-    .card { background:#f9f9f9; padding:1.5rem; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1); text-align:center; }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.8rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      padding: 1.8rem;
+      transition: transform 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+    }
+    .card h3 {
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    .card p {
+      color: var(--text-light);
+    }
 
-    /* Footer */
-    footer { background:#003366; color:white; text-align:center; padding:2rem; margin-top:2rem; }
-    footer a { color:#ffcc00; text-decoration:none; }
+    .goal-bar {
+      background: #e0e7f0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      height: 28px;
+      margin-top: 1.5rem;
+      position: relative;
+    }
+    .goal-fill {
+      height: 100%;
+      background: var(--accent);
+      width: 0;
+      transition: width 0.8s ease;
+    }
+    .goal-text {
+      margin-top: 0.6rem;
+      font-weight: 600;
+      text-align: center;
+      color: var(--text-dark);
+    }
+
+    .team {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+    .team-member {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+    }
+    .team-member .avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.8rem;
+      margin: 0 auto 1rem;
+    }
+
+    form {
+      display: grid;
+      gap: 1rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    form input, form textarea, form select {
+      padding: 0.9rem;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius);
+    }
+    form button {
+      padding: 0.9rem;
+      border: none;
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+      border-radius: var(--radius);
+      cursor: pointer;
+    }
+
+    footer {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 2rem 1.5rem;
+    }
+    footer .footer-container {
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+    footer a { color: var(--accent); }
   </style>
 </head>
 <body>
-  <!-- Header -->
+
   <header>
-    <h1>Frontline</h1>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#programs">Programs</a></li>
-        <li><a href="#donate">Donate</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="nav-container">
+      <div class="nav-logo">Frontline</div>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#donate">Donate</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <!-- Hero -->
   <section class="hero">
-    <h2>Together, We Can Bring Hope</h2>
-    <a href="#donate" class="btn">Donate Now</a>
+    <div class="hero-content">
+      <h1>Frontline — Relief & Aid Where Conflict Hits Hardest</h1>
+      <p>We deliver medical support, food, shelter, and evacuations to civilians impacted by conflict in Gaza, Israel, Ukraine, and beyond.</p>
+      <a href="#donate" class="btn">Donate Now</a>
+    </div>
   </section>
 
-  <!-- About -->
   <section id="about">
-    <h2>About Us</h2>
-    <p style="text-align:center; max-width:800px; margin:auto;">
-      Frontline is a nonprofit initiative dedicated to aiding civilians in war-torn regions including areas from Gaza to Israel and Ukraine to Russia. 
-      Our mission is to provide relief, support, and hope to those suffering due to ongoing conflict.
-    </p>
-    <div class="grid">
-      <div class="card">
-        <h3>Priya Maydipalle</h3>
-        <p>Founder & Co-President</p>
-      </div>
-      <div class="card">
-        <h3>Hasini Garrepalli</h3>
-        <p>Co-President & Treasurer</p>
-      </div>
-      <div class="card">
-        <h3>Yashhu Kukula</h3>
-        <p>Secretary</p>
-      </div>
+    <div class="container">
+      <h2 class="section-title">About Frontline</h2>
+      <p style="max-width: 720px; margin: auto; text-align:center; color: var(--text-light);">
+        Frontline is an emergent humanitarian initiative dedicated to assisting civilians in war-affected zones. Using local partners and transparent reporting, we prioritize speed, safety, and dignity in every mission.
+      </p>
     </div>
   </section>
 
-  <!-- Programs -->
   <section id="programs">
-    <h2>Our Programs</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Emergency Relief</h3>
-        <p>Delivering food, water, and medical supplies to affected families in Gaza and Israel.</p>
-      </div>
-      <div class="card">
-        <h3>Ukraine Aid</h3>
-        <p>Supporting displaced families with shelter and essential resources in Ukraine.</p>
-      </div>
-      <div class="card">
-        <h3>Long-Term Support</h3>
-        <p>Building sustainable programs to help communities rebuild after conflict.</p>
+    <div class="container">
+      <h2 class="section-title">Our Programs</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Emergency Medical Aid</h3>
+          <p>Supply medical kits, mobile clinics, and first responders in conflict zones.</p>
+        </div>
+        <div class="card">
+          <h3>Food & Shelter Support</h3>
+          <p>Provide meals, safe shelter, and basic necessities to displaced families.</p>
+        </div>
+        <div class="card">
+          <h3>Evacuation Assistance</h3>
+          <p>Coordinate safe relocation and transit for vulnerable civilians.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Donate -->
   <section id="donate">
-    <h2>Donate Today</h2>
-    <p style="text-align:center;">Our fundraising goal: <strong>$25,000</strong></p>
+    <div class="container">
+      <h2 class="section-title">Donate & Support Our Goal</h2>
+      <p style="text-align:center; color: var(--text-light);">We aim to raise <strong>$25,000</strong> to support urgent relief missions.</p>
+      <div class="goal-bar"><div class="goal-fill" id="goalFill"></div></div>
+      <div class="goal-text" id="goalText">$0 / $25,000 (0%)</div>
 
-    <!-- Progress Bar -->
-    <div class="goal-bar">
-      <div class="progress" style="width: 20%;">0 / $25,000</div>
-    </div>
-
-    <p style="text-align:center;">Choose a way to give:</p>
-    <div style="text-align:center; margin-top:1rem;">
-      <!-- Replace with your real links -->
-      <a href="https://www.gofundme.com/" target="_blank" class="btn">GoFundMe</a>
-      <a href="https://paypal.me/yourlink" target="_blank" class="btn">PayPal</a>
-      <a href="https://venmo.com/" target="_blank" class="btn">Venmo</a>
-      <a href="https://cash.app/" target="_blank" class="btn">CashApp</a>
+      <div style="margin:2rem auto; text-align:center; max-width: 600px;">
+        <!-- Replace links below -->
+        <a href="GOFUNDME_LINK" target="_blank" class="btn">Donate via GoFundMe</a>
+        <a href="https://paypal.me/PAYPAL_ME_USERNAME" target="_blank" class="btn" style="background: var(--primary); margin-left:1rem;">Donate via PayPal</a>
+      </div>
     </div>
   </section>
 
-  <!-- Contact -->
+  <section id="team">
+    <div class="container">
+      <h2 class="section-title">Team & Leadership</h2>
+      <div class="team">
+        <div class="team-member">
+          <div class="avatar">PM</div>
+          <h3>Priya Maydipalle</h3>
+          <p>Founder & Co-President</p>
+        </div>
+        <div class="team-member">
+          <div class="avatar">HG</div>
+          <h3>Hasini Garrepalli</h3>
+          <p>Co-President / Treasurer</p>
+        </div>
+        <div class="team-member">
+          <div class="avatar">YK</div>
+          <h3>Yashhu Kukula</h3>
+          <p>Secretary</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="contact">
-    <h2>Contact Us</h2>
-    <p style="text-align:center;">Email: <a href="mailto:info@hopeforhumanity.org">info@hopeforhumanity.org</a></p>
-    <p style="text-align:center;">Follow us on 
-      <a href="#">Instagram</a> | 
-      <a href="#">LinkedIn</a> | 
-      <a href="#">Facebook</a>
-    </p>
+    <div class="container">
+      <h2 class="section-title">Contact Us</h2>
+      <p style="text-align:center; color: var(--text-light);">Questions? Volunteer interest? Partnerships? Let’s connect.</p>
+      <form action="https://formsubmit.co/YOUR_EMAIL" method="POST">
+        <input type="hidden" name="_subject" value="Frontline Site Inquiry">
+        <input type="hidden" name="_captcha" value="false">
+        <input name="name" placeholder="Your Name" required>
+        <input name="email" type="email" placeholder="Your Email" required>
+        <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
   </section>
 
-  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Hope for Humanity. All rights reserved.</p>
+    <div class="footer-container">
+      <p>© <span id="year"></span> Frontline. All rights reserved.</p>
+      <p>Follow us on <a href="#">Instagram</a> | <a href="#">Facebook</a> | <a href="#">X</a></p>
+    </div>
   </footer>
 
-  <!-- Smooth scroll -->
   <script>
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener("click", function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
+    // Animate goal bar (you’ll update raised value manually or via backend)
+    const GOAL = 25000;
+    let raised = 0;  // start at 0; you can change this to reflect real donations
+
+    function updateGoal() {
+      const pct = Math.min(100, Math.round((raised / GOAL) * 100));
+      document.getElementById('goalFill').style.width = pct + '%';
+      document.getElementById('goalText').textContent = `$${raised.toLocaleString()} / $${GOAL.toLocaleString()} (${pct}%)`;
+    }
+    updateGoal();
+
+    // Set year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
+        const target = this.getAttribute('href');
+        if (target.length > 1) {
+          e.preventDefault();
+          document.querySelector(target).scrollIntoView({ behavior: 'smooth' });
+        }
       });
     });
   </script>
