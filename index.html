@@ -1,260 +1,340 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Frontline | Nonprofit Organization</title>
-
-<!-- Fonts & Icons -->
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
-<style>
-  * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
-  body {
-    font-family:'Quicksand', sans-serif;
-    background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 50%, #fff5f7 100%);
-    overflow-x:hidden;
-  }
-
-  header {
-    position:fixed;
-    top:0; left:0;
-    width:100%;
-    background:rgba(255,255,255,0.95);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:1rem 3rem;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1);
-    z-index:1000;
-  }
-  .logo { display:flex; align-items:center; gap:0.6rem; font-size:1.8rem; font-weight:700; }
-  .logo span {
-    background:linear-gradient(90deg,#00aaff,#ff69b4);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-  }
-  .logo img { height:45px; width:45px; object-fit:contain; }
-
-  nav a {
-    margin-left:2rem; text-decoration:none; font-weight:600; color:#111;
-    transition:color 0.3s;
-  }
-  nav a:hover { color:#ff69b4; }
-
-  /* Gradient Text */
-  h1,h2,h3,h4,h5,h6,p,a,strong,blockquote,label {
-    background:linear-gradient(90deg,#00aaff,#ff69b4);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-  }
-
-  /* Hero */
-  .hero {
-    position:relative; height:90vh; display:flex; justify-content:center; align-items:center; text-align:center;
-    background: radial-gradient(circle at top right, #e0f7ff, #ffe3f3);
-  }
-  .overlay { position:absolute; width:100%; height:100%; background:rgba(255,255,255,0.4); }
-  .hero-content { position:relative; z-index:2; padding:1rem; }
-  .hero-content h2 { font-size:3.5rem; margin-bottom:1rem; }
-  .hero-content p { font-size:1.2rem; max-width:700px; margin:0 auto 2rem; }
-  .btn {
-    background:linear-gradient(90deg,#00aaff,#ff69b4);
-    color:#fff; padding:0.8rem 1.5rem;
-    border-radius:30px; text-decoration:none; font-weight:600;
-    margin:0.5rem; display:inline-block; transition:0.3s;
-  }
-  .btn:hover { opacity:0.85; transform:scale(1.05); }
-
-  section { padding:5rem 2rem; max-width:1100px; margin:auto; text-align:center; }
-
-  /* Donation Bar */
-  .goal-bar {
-    background:#ddd; border-radius:20px; overflow:hidden;
-    margin:2rem auto; max-width:600px; height:25px; position:relative;
-  }
-  .goal-fill {
-    background:linear-gradient(90deg,#00aaff,#ff69b4);
-    height:100%; width:0%;
-    transition:width 1s ease-in-out;
-  }
-
-  @keyframes glitter {
-    0% { opacity:0; transform:scale(0.5); }
-    50% { opacity:1; transform:scale(1.2); }
-    100% { opacity:0; transform:scale(0.5); }
-  }
-  .glitter {
-    position:absolute; width:10px; height:10px;
-    background:radial-gradient(circle,#fff,transparent);
-    border-radius:50%; pointer-events:none;
-    animation: glitter 1.5s infinite ease-in-out;
-  }
-
-  .team { display:flex; flex-wrap:wrap; justify-content:center; gap:3rem; }
-  .member { background:#fff; padding:2rem; border-radius:15px; width:280px; text-align:center;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s; }
-  .member:hover { transform:translateY(-8px); }
-  .member img { width:160px; height:160px; object-fit:cover; border-radius:50%;
-    border:4px solid #00aaff; margin-bottom:1rem; }
-
-  .articles { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; }
-  .article { background:#fff; padding:2rem; border-radius:15px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.05); transition: transform 0.3s; }
-  .article:hover { transform:scale(1.02); }
-
-  form { background:#fff; padding:2rem; border-radius:15px; max-width:600px;
-    margin:2rem auto; box-shadow:0 2px 10px rgba(0,0,0,0.05); }
-  input,textarea { width:100%; padding:0.8rem; margin:0.6rem 0;
-    border:1px solid #ccc; border-radius:8px; }
-  button { background:linear-gradient(90deg,#00aaff,#ff69b4); border:none;
-    padding:0.8rem 1.5rem; border-radius:30px; font-weight:600; cursor:pointer; color:#fff; }
-
-  footer {
-    background:#fff0fa; padding:3rem 2rem; text-align:center; margin-top:2rem;
-  }
-  footer blockquote { font-style:italic; font-size:1.1rem; max-width:700px; margin:1rem auto; }
-</style>
-</head>
-<body>
-
-<header>
-  <div class="logo">
-    <img src="https://github.com/thefrontline008-del/Frontline-Nonprofit/blob/603fde8e6256e9e05407d89d374689353e726328/logo.png" alt="Frontline Logo">
-    <span>Frontline</span>
-  </div>
-  <nav>
-    <a href="#mission">Mission</a>
-    <a href="#donate">Donate</a>
-    <a href="#team">Team</a>
-    <a href="#articles">Articles</a>
-    <a href="#volunteer">Volunteer</a>
-    <a href="#stay">Stay Updated</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <div class="overlay"></div>
-  <div class="hero-content">
-    <h2>Frontline</h2>
-    <p>Aiding people in war-torn regions such as Gaza, Israel, and Ukraine. Together, we can bring hope and relief.</p>
-    <a href="#donate" class="btn">Donate Now</a>
-    <a href="#volunteer" class="btn">Join as Volunteer</a>
-  </div>
-</section>
-
-<section id="mission">
-  <h2>Our Mission</h2>
-  <p>We aim to raise $25,000 to support families displaced and affected by conflicts in war-torn countries.</p>
-  <div class="goal-bar"><div class="goal-fill" id="goalFill"></div></div>
-  <p id="donationText">$0 raised of $25,000 goal</p>
-</section>
-
-<section id="team">
-  <h2>Meet Our Team</h2>
-  <div class="team">
-
-    <div class="member">
-      <img src="https://github.com/thefrontline008-del/Frontline-Nonprofit/blob/43c49cec9f7a0d9a1fcf85db21907194093b1eeb/IMG_3949%20(2).JPG" alt="Priya Maydipalle - President">
-      <h3>Priya Maydipalle</h3>
-      <p><strong>President</strong></p>
-      <p>I am a rising senior at Westborough High School. I am passionate about dancing, spending most of my childhood performing in the Boston Ballet and Triveni’s School of Karnatic Dance. After graduation, I wish to pursue a career in finance. I am dedicated to this mission because I believe true progress comes from rebuilding lives even through the smallest acts.</p>
-    </div>
-
-    <div class="member">
-      <img src="https://github.com/thefrontline008-del/Frontline-Nonprofit/blob/4589976584ab62d31bf599f61898302f05a3d126/Screenshot%202025-09-29%20230959.png" alt="Hasini Garrepalli - Treasurer">
-      <h3>Hasini Garrepalli</h3>
-      <p><strong>Treasurer</strong></p>
-      <p>I am a rising junior at Franklin High School. I am passionate about music, especially singing, and mentor kids with voice lessons throughout the year. I also enjoy dancing and performing. I am dedicated to this mission because I believe my time is best spent uplifting others to make a positive difference in my community.</p>
-    </div>
-
-    <div class="member">
-      <img src="https://github.com/thefrontline008-del/Frontline-Nonprofit/blob/6c3d7fd0f32bf8efb2c928e824cf5d3808d63feb/Screenshot%202025-10-07%20183943.png" alt="Yashu Kukula - Secretary">
-      <h3>Yashu Kukula</h3>
-      <p><strong>Secretary</strong></p>
-      <p>I am a rising junior at Ashland High School. I am passionate about music, art, and reading. I am also passionate about animals and hope to enter the veterinary field after graduation. I am part of the varsity tennis team and I volunteer at the food pantry on the weekends. I am dedicated to this mission because I believe offering compassion to people affected by war has the power to heal.</p>
-    </div>
-
-  </div>
-</section>
-
-<section id="articles">
-  <h2>Articles & Resources</h2>
-  <div class="articles">
-    <!-- same 4 articles -->
-  </div>
-</section>
-
-<section id="volunteer">
-  <h2>Volunteer With Us</h2>
-  <form>
-    <input type="text" placeholder="Full Name" required>
-    <input type="email" placeholder="Email Address" required>
-    <textarea placeholder="Why do you want to volunteer?" rows="4" required></textarea>
-    <button type="submit">Submit Application</button>
-  </form>
-</section>
-
-<section id="stay">
-  <h2>Stay Updated</h2>
-  <p>Join our newsletter to stay informed on missions, updates, and volunteer opportunities.</p>
-  <form id="newsletterForm">
-    <input type="email" id="newsletterEmail" placeholder="Enter your email" required>
-    <button type="submit">Subscribe</button>
-  </form>
-</section>
-
-<section id="contact">
-  <h2>Contact Us</h2>
-  <form id="contactForm">
-    <input type="text" placeholder="Your Name" required>
-    <input type="email" placeholder="Your Email" required>
-    <textarea placeholder="Your Message" rows="4" required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-</section>
-
-<footer>
-  <blockquote>“It's not how much we give, but how much love we put into giving.” — Mother Teresa</blockquote>
-  <p>© 2025 Frontline. All Rights Reserved.</p>
-</footer>
-
-<script>
-  // Donation bar animation + glitter
-  const goalFill = document.getElementById('goalFill');
-  const donationText = document.getElementById('donationText');
-  let raised = 8750;
-
-  function updateProgress() {
-    let percentage = (raised / 25000) * 100;
-    goalFill.style.width = percentage + '%';
-    donationText.textContent = `$${raised.toLocaleString()} raised of $25,000 goal`;
-    if (raised >= 25000) {
-      for (let i = 0; i < 40; i++) {
-        const glitter = document.createElement('div');
-        glitter.classList.add('glitter');
-        glitter.style.left = Math.random() * window.innerWidth + 'px';
-        glitter.style.top = Math.random() * window.innerHeight + 'px';
-        document.body.appendChild(glitter);
-        setTimeout(() => glitter.remove(), 2000);
-      }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frontline | Nonprofit Organization</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family:'Montserrat', sans-serif;
+      background:white;
+      color:#111;
+      line-height:1.6;
     }
-  }
-  updateProgress();
 
-  // Newsletter (mock)
-  document.getElementById('newsletterForm').addEventListener('submit', e => {
-    e.preventDefault();
-    alert('Thanks for subscribing! You’ll receive our updates soon.');
-  });
+    header {
+      position:fixed;
+      top:0;
+      width:100%;
+      background:rgba(255,255,255,0.95);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:1rem 3rem;
+      box-shadow:0 2px 10px rgba(0,0,0,0.1);
+      z-index:1000;
+    }
 
-  // Contact form (mock)
-  document.getElementById('contactForm').addEventListener('submit', e => {
-    e.preventDefault();
-    alert('Your message has been sent! We’ll get back to you soon.');
-  });
-</script>
+    .logo {
+      display:flex;
+      align-items:center;
+      gap:0.6rem;
+      font-size:1.6rem;
+      font-weight:700;
+      color:#00aaff;
+      letter-spacing:1px;
+    }
+
+    .logo img {
+      width:40px;
+      height:40px;
+    }
+
+    nav a {
+      text-decoration:none;
+      color:#111;
+      margin:0 1rem;
+      font-weight:600;
+      transition:color 0.3s;
+    }
+    nav a:hover { color:#00aaff; }
+
+    section {
+      padding:5rem 2rem;
+      margin-top:5rem;
+    }
+
+    .hero {
+      text-align:center;
+      padding:6rem 2rem;
+      background:linear-gradient(90deg, #00aaff, #00ccff);
+      color:white;
+    }
+    .hero h1 {
+      font-size:3rem;
+      margin-bottom:1rem;
+    }
+
+    .donate {
+      text-align:center;
+      background:#f8f8f8;
+      padding:4rem 2rem;
+    }
+    .donate h2 {
+      background:linear-gradient(90deg, #00aaff, #0088cc);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+    .progress-bar {
+      width:60%;
+      background:#ddd;
+      height:20px;
+      border-radius:10px;
+      margin:1rem auto;
+      overflow:hidden;
+    }
+    .progress {
+      height:100%;
+      background:linear-gradient(90deg, #00aaff, #00ccff);
+      width:70%;
+      transition:width 1s;
+    }
+
+    .buttons a {
+      display:inline-block;
+      margin:0.5rem;
+      background:linear-gradient(90deg, #00aaff, #0088cc);
+      color:white;
+      padding:0.7rem 1.5rem;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:600;
+      transition:opacity 0.3s;
+    }
+    .buttons a:hover { opacity:0.8; }
+
+    /* Team Section */
+    .team {
+      text-align:center;
+      background:white;
+      padding:4rem 2rem;
+    }
+    .team h2 {
+      font-size:2rem;
+      background:linear-gradient(90deg, #00aaff, #0088cc);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      margin-bottom:2rem;
+    }
+    .team-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+      gap:2rem;
+      max-width:1000px;
+      margin:0 auto;
+    }
+    .member {
+      background:#f8f8f8;
+      border-radius:15px;
+      padding:2rem;
+      box-shadow:0 4px 10px rgba(0,0,0,0.08);
+      transition:transform 0.3s;
+    }
+    .member:hover { transform:translateY(-5px); }
+    .member img {
+      width:180px;
+      height:180px;
+      border-radius:50%;
+      object-fit:cover;
+      border:4px solid #00aaff;
+      margin-bottom:1rem;
+    }
+    .member h3 {
+      margin-bottom:0.3rem;
+      color:#0077cc;
+    }
+    .member p.role {
+      font-weight:600;
+      color:#555;
+      margin-bottom:0.6rem;
+    }
+
+    /* Articles */
+    #articles {
+      background:#fff;
+      color:#111;
+      padding:4rem 2rem;
+    }
+    #articles h2 {
+      text-align:center;
+      font-size:2.2rem;
+      background:linear-gradient(90deg, #00aaff, #0088cc);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      margin-bottom:2rem;
+    }
+    .articles {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+      gap:2rem;
+      max-width:1100px;
+      margin:0 auto;
+    }
+    .article {
+      background:#f8f8f8;
+      border-radius:10px;
+      padding:1.5rem;
+      box-shadow:0 4px 10px rgba(0,0,0,0.08);
+      transition:transform 0.3s;
+    }
+    .article:hover { transform:translateY(-5px); }
+    .article h3 {
+      color:#0077cc;
+      margin-bottom:0.5rem;
+    }
+    .article a {
+      color:#00aaff;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    /* Stay Updated + Contact */
+    #stay-updated, #contact {
+      text-align:center;
+      padding:4rem 2rem;
+    }
+    #stay-updated {
+      background:#f0f8ff;
+    }
+    #stay-updated h2, #contact h2 {
+      background:linear-gradient(90deg, #00aaff, #0088cc);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    /* Quote */
+    .quote {
+      background:#f8f8f8;
+      padding:2rem;
+      text-align:center;
+      font-style:italic;
+      font-size:1.1rem;
+      color:#444;
+    }
+
+    footer {
+      text-align:center;
+      padding:1rem;
+      background:#00aaff;
+      color:white;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Frontline Logo">
+      <span>Frontline</span>
+    </div>
+    <nav>
+      <a href="#donate">Donate</a>
+      <a href="#team">Team</a>
+      <a href="#articles">Articles</a>
+      <a href="#stay-updated">Stay Updated</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Frontline: Humanity in Action</h1>
+    <p>Together, we bring aid, hope, and healing where it’s needed most.</p>
+  </section>
+
+  <section id="donate" class="donate">
+    <h2>Help Us Reach Our Goal</h2>
+    <div class="progress-bar"><div class="progress"></div></div>
+    <p><strong>$0</strong> raised of $25,000 goal</p>
+    <div class="buttons">
+      <a href="https://www.gofundme.com" target="_blank">GoFundMe</a>
+      <a href="https://www.paypal.com" target="_blank">PayPal</a>
+      <a href="https://www.venmo.com" target="_blank">Venmo</a>
+    </div>
+  </section>
+
+  <section id="team" class="team">
+    <h2>Meet Our Team</h2>
+    <div class="team-grid">
+      <div class="member">
+        <img src="IMG_3949(2).JPG" alt="Priya Maydipalle">
+        <h3>Priya Maydipalle</h3>
+        <p class="role">President</p>
+        <p>I am a rising senior at Westborough High School. I am passionate about dancing, spending most of my childhood performing in the Boston Ballet and Triveni’s School of Karnatic Dance. After graduation, I wish to pursue a career in finance. I am dedicated to this mission because I believe true progress comes from rebuilding lives even through the smallest acts.</p>
+      </div>
+
+      <div class="member">
+        <img src="hasini.jpg" alt="Hasini Garrepalli">
+        <h3>Hasini Garrepalli</h3>
+        <p class="role">Treasurer</p>
+        <p>I am a rising junior at Franklin High School. I am passionate about music, especially singing, and mentor kids with voice lessons throughout the year. I also enjoy dancing and performing. I am dedicated to this mission because I believe my time can uplift others and make a positive difference in my community.</p>
+      </div>
+
+      <div class="member">
+        <img src="yashu.jpg" alt="Yashu Kukula">
+        <h3>Yashu Kukula</h3>
+        <p class="role">Secretary</p>
+        <p>I am a rising junior at Ashland High School. I am passionate about music, art, and reading. I am also passionate about animals and hope to enter the veterinary field after graduation. I am part of the varsity tennis team and I volunteer at the food pantry on weekends. I am dedicated to this mission because I believe offering compassion to people affected by war has the power to heal.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="articles">
+    <h2>Articles & Resources</h2>
+    <div class="articles">
+      <div class="article">
+        <h3>How Aid Reaches War-Torn Areas</h3>
+        <p>Learn how global volunteers and NGOs ensure aid reaches war zones like Gaza and Ukraine despite danger and destruction.</p>
+        <a href="https://www.unhcr.org" target="_blank">Read More →</a>
+      </div>
+      <div class="article">
+        <h3>What You Can Do</h3>
+        <p>From donating to volunteering, discover how individuals can directly impact families in crisis through local and online actions.</p>
+        <a href="https://www.redcross.org" target="_blank">Read More →</a>
+      </div>
+      <div class="article">
+        <h3>Stories of Hope Amid Crisis</h3>
+        <p>Meet the survivors, field medics, and aid workers bringing light and courage to the darkest corners of the world.</p>
+        <a href="https://www.doctorswithoutborders.org" target="_blank">Read More →</a>
+      </div>
+      <div class="article">
+        <h3>The Role of Youth in Global Relief</h3>
+        <p>Teen-led nonprofits like Frontline are redefining global relief work — showing that age is no barrier to compassion or action.</p>
+        <a href="https://www.unicef.org" target="_blank">Read More →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="stay-updated">
+    <h2>Stay Updated</h2>
+    <p>Join our newsletter to receive updates about new missions, events, and progress.</p>
+    <form style="margin-top:1rem;">
+      <input type="email" placeholder="Enter your email" style="padding:0.8rem 1rem; border:1px solid #ccc; border-radius:8px; width:250px;">
+      <button style="background:#00aaff; color:white; border:none; padding:0.8rem 1.5rem; border-radius:8px; margin-left:0.5rem; cursor:pointer;">Subscribe</button>
+    </form>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Have questions or want to get involved? Reach out anytime.</p>
+    <p><strong>Email:</strong> contact@frontline.org</p>
+    <p><strong>Instagram:</strong> @frontline.relief</p>
+    <p><strong>Phone:</strong> (555) 123-4567</p>
+  </section>
+
+  <section class="quote">
+    “It's not how much we give, but how much love we put into giving.”  
+    <br>— <strong>Mother Teresa</strong>
+  </section>
+
+  <footer>
+    <p>© 2025 Frontline | All Rights Reserved</p>
+  </footer>
 </body>
 </html>
