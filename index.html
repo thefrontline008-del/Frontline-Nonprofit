@@ -184,11 +184,8 @@
 </head>
 <body>
   <header>
-  <div class="logo" aria-label="Frontline logo">
+    <div class="logo" aria-label="Frontline logo">flex==0$
   <img src="logo.png" alt="Frontline Logo" style="width:44px; height:44px; object-fit:contain; border-radius:50%;">
-  <div class="brand">Frontline</div>
-
-        <svg viewBox="0 0 100 100" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stop-color="#00aaff"/>
@@ -196,18 +193,6 @@
             </linearGradient>
           </defs>
 
-          <!-- staff -->
-          <line x1="50" y1="10" x2="50" y2="86" stroke="url(#logoGrad)" stroke-width="3" stroke-linecap="round"/>
-          <!-- stacked circles (staff details) -->
-          <circle cx="50" cy="20" r="6" fill="url(#logoGrad)"/>
-          <circle cx="50" cy="34" r="5" fill="url(#logoGrad)"/>
-          <circle cx="50" cy="48" r="5" fill="url(#logoGrad)"/>
-          <!-- curved wings / serpentine lines -->
-          <path d="M42 14 C28 28, 28 72, 42 86" stroke="url(#logoGrad)" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <path d="M58 14 C72 28, 72 72, 58 86" stroke="url(#logoGrad)" stroke-width="3" fill="none" stroke-linecap="round"/>
-        </svg>
-
-        <div class="brand">Frontline</div>
       </div>
 
       <nav aria-label="Main navigation">
@@ -216,7 +201,7 @@
         <a href="#team">Team</a>
         <a href="#articles">Articles</a>
         <a href="#volunteer">Volunteer</a>
-        <a href="#newsletter">Stay Updated</a>
+        <a href="#newsletter">Updates</a>
       </nav>
     </div>
   </header>
@@ -241,7 +226,7 @@
         We aim to raise $25,000 to support families displaced and affected by conflicts. We channel resources through vetted partners and local volunteers to make relief fast and accountable.
       </p>
 
-      <div class="goal-bar" aria-hidden="true"><div class="goal-fill" style="width:35%"></div></div>
+      <div class="goal-bar" aria-hidden="true"><div class="goal-fill" style="width:0%"></div></div>
       <p style="text-align:center;color:#444">$0 raised of $25,000 goal</p>
     </section>
 
@@ -306,18 +291,19 @@
     <section id="volunteer">
       <h2>Volunteer With Us</h2>
       <form id="volForm" action="#" method="post" onsubmit="event.preventDefault(); alert('Thanks — volunteer sign-up received (demo).');">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="why" placeholder="Why would you like to volunteer?" rows="4"></textarea>
-        <div style="text-align:center;margin-top:.5rem"><button type="submit">Sign Up</button></div>
+        <input type="text" name="name" placeholder="Your Name" style="font-family: 'Montserrat', sans-serif; font-size:1rem; padding:.7rem; border-radius:10px; border:1px solid #ddd;" required>
+        <input type="email" name="email" placeholder="Your Email" style="font-family: 'Montserrat', sans-serif; font-size:1rem; padding:.7rem; border-radius:10px; border:1px solid #ddd;" required>
+        <textarea name="why" placeholder="Why would you like to volunteer?" rows="4" style="font-family: 'Montserrat', sans-serif; font-size:1rem; padding:.7rem; border-radius:10px; border:1px solid #ddd;"></textarea>
+        <div style="text-align:center;margin-top:.5rem"><button type="submit"style="font-family: 'Montserrat', sans-serif; font-size:1rem; padding:.7rem; border-radius:10px; border:1px solid #ddd;">Sign Up</button></div>
       </form>
     </section>
 
     <section id="newsletter">
       <h2>Stay Updated</h2>
       <form id="newsForm" action="#" method="post" onsubmit="event.preventDefault(); alert('Thanks — you signed up for updates (demo).');">
-        <input type="email" name="email" placeholder="Enter your email to receive updates" required>
-        <div style="text-align:center;margin-top:.5rem"><button type="submit">Subscribe</button></div>
+        <input type="email" name="email"style="font-family: 'Montserrat', sans-serif; font-size:1rem; padding:.7rem; border-radius:10px; border:1px solid #ddd;"></textarea>
+ placeholder="Enter your email to receive updates" required>
+        <div style="text-align:center;margin-top:.5rem"><button type="submit"style="font-family: 'Montserrat', sans-serif; font-size:1rem; padding:.7rem; border-radius:10px; border:1px solid #ddd;">Subscribe</button></div>
       </form>
     </section>
 
